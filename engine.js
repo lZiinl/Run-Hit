@@ -6,9 +6,19 @@ export function newGame(favorite=0,rng=Math.random){if(!TEAMS[favorite])throw Er
 export function typeCounts(lineup){return TYPES.map((_,t)=>lineup.filter(p=>p.type===t).length);}
 export function draftOffers(game,rng=Math.random,previous=[]){
  const owned=new Set([...game.lineup,...game.bench].map(p=>p.id)),pool=PLAYERS.filter(p=>!owned.has(p.id)),fresh=pool.filter(p=>!previous.some(x=>x.id===p.id)),offers=[];
- const choose=filter=>{let eligible=fresh.filter(p=>!offers.includes(p)&&filter(p));if(!eligible.length)eligible=pool.filter(p=>!offers.includes(p)&&filter(p));const p=sample(eligible,1,rng)[0];if(p)offers.push(p);};
- choose(p=>p.team===game.favorite);choose(p=>p.team!==game.favorite);const counts=typeCounts(game.lineup),wanted=counts.indexOf(Math.max(...counts));choose(p=>p.type===wanted);while(offers.length<3){const before=offers.length;choose(()=>true);if(before===offers.length)break;}return sample(offers,offers.length,rng);
+ while(offers.length<3){
+  const preferFavorite=rng()<RULES.favoriteChance;
+  const matches=p=>(p.team===game.favorite)===preferFavorite;
+  let eligible=fresh.filter(p=>!offers.includes(p)&&matches(p));
+  if(!eligible.length)eligible=pool.filter(p=>!offers.includes(p)&&matches(p));
+  if(!eligible.length)eligible=fresh.filter(p=>!offers.includes(p));
+  if(!eligible.length)eligible=pool.filter(p=>!offers.includes(p));
+  if(!eligible.length)break;
+  offers.push(eligible[Math.floor(rng()*eligible.length)]);
+ }
+ return offers;
 }
+export function releasePlayer(game,id){const index=game.bench.findIndex(p=>p.id===id);if(index<0)return false;game.bench.splice(index,1);return true;}
 export function rerollOffers(game,previous,rng=Math.random){if(game.rerolls<=0)return null;game.rerolls--;return draftOffers(game,rng,previous);}
 export function synergies(lineup){return TEAMS.map((_,t)=>lineup.filter(p=>p.team===t).length);}
 export function newAttack(){return {inning:1,outs:0,bases:[false,false,false],score:0,real:0,bonus:0,pa:0,cursor:0,previous:false,buff:0,bottom:false,walks:0,reach:0,seen:[],inningRuns:0,done:false,won:false};}
@@ -23,6 +33,6 @@ export function advance(bases,result,extra=false){let runs=0,b=[...bases];if(res
 export function step(game,s,rng=Math.random){if(s.done)return null;const p=game.lineup[s.cursor%9],{rates,notes}=probabilities(game,s);let roll=rng(),result=5;for(let i=0;i<6;i++){roll-=rates[i];if(roll<0){result=i;break;}}const extra=result===2&&s.bases.some(Boolean)&&(p.skill==='speedster'||(typeCounts(game.lineup)[3]>=3&&rng()<.20));if(extra)notes.push(p.skill==='speedster'?'고유: 그린 라이트 · 추가 진루':'주루형 3인 · 추가 진루');const move=advance(s.bases,result,extra);s.bases=move.bases;s.buff=0;s.bottom=false;s.lastOut=result===0;s.previous=result!==0;s.seen.push(p.id);let bonus=0;
  if(result===0)s.outs++;else{s.reach++;if(p.skill==='bridge')s.buff+=.06;if(result===1){s.walks++;if(p.skill==='walk')s.buff+=.10;if(game.effects.includes('eye')&&s.walks%2===0)s.buff+=.12;}if(game.effects.includes('bottom')&&s.cursor%9>=6)s.bottom=true;}
  if(result===5){if(p.skill==='fifty'){bonus++;notes.push('고유: 빅 스윙 +1');}if(game.effects.includes('festival')){bonus++;notes.push('홈런 축제 +1');}}
- s.real+=move.runs;s.bonus+=bonus;s.score+=move.runs+bonus;s.inningRuns+=move.runs+bonus;game.total+=move.runs+bonus;game.bestInning=Math.max(game.bestInning,s.inningRuns);s.pa++;s.cursor++;let ended=false;
+ s.real+=move.runs;s.bonus+=bonus;s.score+=move.runs+bonus;s.inningRuns+=move.runs+bonus;game.total+=move.runs+bonus;game.bestInning=Math.max(game.bestInning,s.inningRuns);s.pa++;s.cursor++;const basesAfter=[...s.bases];let ended=false;
  if(s.score>=RULES.targets[game.stage]){s.done=true;s.won=true;}else if(s.outs>=3||s.pa>=RULES.maxPA){ended=true;if(s.inning>=RULES.innings)s.done=true;else{Object.assign(s,{inning:s.inning+1,outs:0,bases:[false,false,false],pa:0,previous:false,buff:0,bottom:false,lastOut:false,inningRuns:0});}}
- return {player:p,result,runs:move.runs,bonus,notes,ended};}
+ return {player:p,result,runs:move.runs,bonus,notes,ended,basesAfter};}

@@ -13,9 +13,9 @@ test('release roster is 150 distinct 2025 batters with official sources and vali
 test('all clubs start with exactly three favorites, six other clubs, nine unique players',()=>{
  for(let t=0;t<10;t++)for(let seed=0;seed<30;seed++){const g=newGame(t,seeded(seed));assert.equal(g.lineup.filter(p=>p.team===t).length,3);assert.equal(new Set(g.lineup.map(p=>p.id)).size,9);assert.equal(new Set(g.lineup.filter(p=>p.team!==t).map(p=>p.team)).size,6);}
 });
-test('draft preserves favorite/off-club coverage, excludes owned players, limits rerolls',()=>{
+test('draft excludes owned players and duplicates, and limits rerolls',()=>{
  for(let t=0;t<10;t++){const rng=seeded(77+t),g=newGame(t,rng);let offers=draftOffers(g,rng);for(let round=0;round<3;round++){
- assert.equal(offers.length,3);assert.equal(new Set(offers.map(p=>p.id)).size,3);assert.ok(offers.some(p=>p.team===t));assert.ok(offers.some(p=>p.team!==t));assert.ok(offers.every(p=>!g.lineup.some(x=>x.id===p.id)));
+ assert.equal(offers.length,3);assert.equal(new Set(offers.map(p=>p.id)).size,3);assert.ok(offers.every(p=>!g.lineup.some(x=>x.id===p.id)));
  if(round<2){const previous=offers;offers=rerollOffers(g,previous,rng);assert.ok(offers.every(p=>!previous.some(x=>x.id===p.id)));}}
  assert.equal(g.rerolls,0);assert.equal(rerollOffers(g,offers,rng),null);}
 });
