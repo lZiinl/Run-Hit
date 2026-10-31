@@ -2,6 +2,10 @@
 
 2025 KBO 정규시즌 공식 기록에 기반한 10구단·타자 150명 덱 빌딩 웹게임입니다. 첫 공개판 목표인 구단별 15명은 확보했으며, 현재는 밸런스 테스트 버전입니다. 가상 팀 4개·24명 구성은 폐기했습니다.
 
+**게임 접속 주소:** [RUN & HIT 플레이하기](https://lziinl.github.io/Run-Hit/)
+
+GitHub Pages 최초 설정 및 배포가 성공한 뒤 위 주소로 접속할 수 있습니다.
+
 ## 실행 및 검증
 
 Node.js 24에서 추가 패키지 설치 없이 실행합니다.
@@ -10,7 +14,7 @@ Node.js 24에서 추가 패키지 설치 없이 실행합니다.
 node server.mjs
 ```
 
-브라우저에서 http://127.0.0.1:4173 에 접속합니다. `npm start`도 동일합니다.
+로컬 개발 중에는 [http://127.0.0.1:4173](http://127.0.0.1:4173)에 접속합니다. 이 주소는 실행 중인 내 컴퓨터에서만 사용하며, 지인에게는 상단의 GitHub Pages 주소를 공유합니다. `npm start`도 동일합니다.
 
 ```sh
 node scripts/import-kbo.mjs --check
@@ -49,15 +53,20 @@ node build.mjs
 
 ## GitHub Pages
 
-연결된 저장소: https://github.com/lZiinl/Run-Hit
+연결된 저장소: [lZiinl/Run-Hit](https://github.com/lZiinl/Run-Hit)
 
 현재 로컬 브랜치는 `master`이며 워크플로는 `master`와 `main` push 모두 지원합니다. 원본 대조 → 테스트 → 정적 빌드 → Pages 배포 순서입니다.
 
-1. 저장소 Settings → Pages → Source를 **GitHub Actions**로 설정합니다.
-2. 변경을 push하거나 Actions에서 **Deploy game to GitHub Pages**를 수동 실행합니다.
-3. 성공한 배포의 URL을 지인에게 공유합니다.
+1. [저장소 Pages 설정](https://github.com/lZiinl/Run-Hit/settings/pages)을 엽니다.
+2. **Build and deployment → Source → GitHub Actions**를 선택합니다. 최초 1회 필요한 저장소 설정입니다.
+3. [Actions](https://github.com/lZiinl/Run-Hit/actions)에서 실패한 실행을 열어 **Re-run all jobs**를 누르거나, **Deploy game to GitHub Pages → Run workflow**를 실행합니다. 이후 직접 커밋·push하면 자동 배포됩니다.
+4. 성공한 배포의 URL을 지인에게 공유합니다.
 
-기본 예상 주소는 https://lZiinl.github.io/Run-Hit/ 이며, 실제 배포 성공 여부는 Actions에서 확인해야 합니다. 링크는 공개 접속용이며 지인 전용 접근 제어는 없습니다.
+공유 주소는 [https://lziinl.github.io/Run-Hit/](https://lziinl.github.io/Run-Hit/)입니다. 저장소 경로 `Run-Hit`의 대소문자를 유지합니다. 실제 배포 성공 여부는 Actions에서 확인해야 합니다. 링크는 공개 접속용이며 지인 전용 접근 제어는 없습니다.
+
+### `Get Pages site failed` / `Not Found` 오류
+
+2026-10-31 첫 실행에서는 원본 대조, 테스트 16개, 빌드가 모두 통과했지만 `actions/configure-pages@v5`에서 Pages 사이트를 찾지 못해 중단됐습니다. 위의 Pages 설정에서 Source를 **GitHub Actions**로 지정한 뒤 다시 실행하세요. 이 오류 해결에는 게임 코드 수정이나 새 커밋이 필요하지 않습니다.
 
 ## 검증 상태와 단순화
 
