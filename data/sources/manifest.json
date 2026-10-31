@@ -1,0 +1,167 @@
+{
+  "season": 2025,
+  "retrievedAt": "2026-10-31T07:47:53.699Z",
+  "selection": "Top 15 PA per team as attributed by the KBO 2025 regular-season table; season totals, not team splits.",
+  "sources": [
+    {
+      "path": "data/sources/LG-Basic1.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "LG",
+      "sha256": "bba110c3999aabe00a3808f4757796b52d02d168ccb89d88cf4aca87d2fae8f2"
+    },
+    {
+      "path": "data/sources/LG-BasicOld.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/BasicOld.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "LG",
+      "sha256": "60caef01cf048af798b833d729de69012481d7d5b4bc4ab86f5bacdd1f600777"
+    },
+    {
+      "path": "data/sources/HH-Basic1.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "HH",
+      "sha256": "f5829fe6d58da4e81bc27fb7e3891bce5cc5a15750958a4e13725e2aa925e41a"
+    },
+    {
+      "path": "data/sources/HH-BasicOld.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/BasicOld.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "HH",
+      "sha256": "efe7f32dfea2ab02bb4e66f7fbe32676faecfe8575e30e502852863ce2c33901"
+    },
+    {
+      "path": "data/sources/SK-Basic1.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "SK",
+      "sha256": "fdae3c5a68bbb93fd6061982d0afa7ed942d2b3b4d0a7139eb6844b3c0d3ab0f"
+    },
+    {
+      "path": "data/sources/SK-BasicOld.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/BasicOld.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "SK",
+      "sha256": "561c0bd2de77834b406fce7c625f37a81ffed582f8fb20b9ad6768198b269b4f"
+    },
+    {
+      "path": "data/sources/SS-Basic1.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "SS",
+      "sha256": "72e34156087c5b304287f607c4228daee2489a44d812f898c0517b2ee5bfa02c"
+    },
+    {
+      "path": "data/sources/SS-BasicOld.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/BasicOld.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "SS",
+      "sha256": "be344ab5943a38f1bd3de4e8f6448d82f2a3a9340e60d841f7631093ed1797c5"
+    },
+    {
+      "path": "data/sources/NC-Basic1.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "NC",
+      "sha256": "7674771fb5484500c55bf03045456a24ad2750a66cf1d0e84187835c18b836a1"
+    },
+    {
+      "path": "data/sources/NC-BasicOld.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/BasicOld.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "NC",
+      "sha256": "440ed92115986bd9416b215b78deef41d1cc0143f003ebedb81778258cdba448"
+    },
+    {
+      "path": "data/sources/KT-Basic1.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "KT",
+      "sha256": "1423f3cec7b4156d155494c304fa922c15961e2a9a76c2a2d76baea6d38c2e00"
+    },
+    {
+      "path": "data/sources/KT-BasicOld.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/BasicOld.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "KT",
+      "sha256": "bc135d169dcd6ed6b67370aad7172ad2dc55b7fa68409be225091f485f1927d8"
+    },
+    {
+      "path": "data/sources/LT-Basic1.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "LT",
+      "sha256": "a2c6baf5f7e194dcbc37e1601939534c6cc8e122b671d156eaa4f7aadddd816a"
+    },
+    {
+      "path": "data/sources/LT-BasicOld.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/BasicOld.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "LT",
+      "sha256": "b17e51a07d573db834b86508fd2dd2c792266e7774fa0c29ff3f977934d42d7a"
+    },
+    {
+      "path": "data/sources/HT-Basic1.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "HT",
+      "sha256": "126ae0afd19665855e961ed08e3b0cb77495bbefa312ce54c855ecf8d264a43d"
+    },
+    {
+      "path": "data/sources/HT-BasicOld.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/BasicOld.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "HT",
+      "sha256": "8910535fabe83bb9d2fa50f8f85401aac51ca90f23772ee3de003543ec193527"
+    },
+    {
+      "path": "data/sources/OB-Basic1.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "OB",
+      "sha256": "e66d07d5facd1689651453184990cceaa368fbc85333e588639e2350d658a243"
+    },
+    {
+      "path": "data/sources/OB-BasicOld.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/BasicOld.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "OB",
+      "sha256": "82253b7d6d7fbbb347b26db2cd1d9d71dad2f8522f9eeb2411f317d14b8c5b07"
+    },
+    {
+      "path": "data/sources/WO-Basic1.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "WO",
+      "sha256": "3fcdf96cce25dcfefdb6dc456c9bab6298f29c685047c92ef1f81a067c71f463"
+    },
+    {
+      "path": "data/sources/WO-BasicOld.html",
+      "url": "https://www.koreabaseball.com/Record/Player/HitterBasic/BasicOld.aspx",
+      "season": 2025,
+      "series": 0,
+      "team": "WO",
+      "sha256": "39f0f9860d9badfbaf6101d921aaa1251790b82cb78ac8ff67f5a3b8252501c5"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+# Preserve source snapshots byte-for-byte for SHA-256 provenance checks.
+data/sources/*.html -text

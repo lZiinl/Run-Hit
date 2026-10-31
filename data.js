@@ -1,7 +1,12 @@
-export const RULES={targets:[3,5,7,9,12],innings:2,maxPA:30,bench:5,delay:2400};
-export const TEAMS=[{name:'항구 갈매기',icon:'⚓',color:'#e88e57',desc:'3명: 장타 +6%p · 5명: 홈런 보너스 +1점'},{name:'숲속 여우',icon:'◆',color:'#9fc781',desc:'3명: 볼넷 +7%p · 5명: 출루 3회마다 +1점'},{name:'번개 표범',icon:'ϟ',color:'#eac963',desc:'3명: 단타 +6%p · 5명: 안타 때 주자 추가 진루'},{name:'강철 곰',icon:'✦',color:'#9db7e9',desc:'3명: 2아웃 안타 +10%p · 5명: 아웃마다 다음 타자 안타 +8%p'}];
-export const TYPES=[{name:'출루형',rates:[.40,.24,.23,.07,.01,.05],skill:'볼넷 출루 시 다음 타자 홈런 +10%p'},{name:'연결형',rates:[.40,.12,.32,.10,.02,.04],skill:'직전 타자 출루 시 단타 +12%p'},{name:'거포형',rates:[.52,.10,.12,.10,.01,.15],skill:'주자 2명 이상이면 홈런 +15%p'},{name:'승부형',rates:[.46,.12,.25,.10,.02,.05],skill:'마지막 이닝에 단타 +12%p'},{name:'하위형',rates:[.43,.13,.28,.09,.02,.05],skill:'7~9번 타순에서 2루타 +12%p'},{name:'끈기형',rates:[.45,.15,.25,.08,.02,.05],skill:'2아웃에서 단타 +15%p'}];
-const names=[['김출루','이연결','박한방','최역전','정하위','오끈기'],['윤산들','한여울','서대포','임승부','백새벽','조끝심'],['강번개','유질주','장천둥','신결승','문날쌘','배집념'],['송강철','권이음','남철포','홍끝내','안막강','전불굴']];
-export const PLAYERS=names.flatMap((team,t)=>team.map((name,type)=>({id:`p${t}${type}`,name,team:t,type})));
-export const EFFECTS=[{id:'eye',name:'눈야구 훈련',desc:'볼넷 2회마다 다음 타자 홈런 +12%p'},{id:'bottom',name:'공포의 하위 타선',desc:'7~9번 타자가 출루하면 다음 타자 단타 +12%p'},{id:'factory',name:'홈런 공장',desc:'단타 확률 5%p를 홈런 확률로 전환'},{id:'coach',name:'대타 전문 코치',desc:'새로 영입한 선수의 매 스테이지 첫 타석 단타 +15%p'},{id:'grit',name:'끈질긴 타선',desc:'현재 이닝 아웃당 단타 +4%p'},{id:'focus',name:'득점권 집중',desc:'2·3루에 주자가 있으면 2루타 +6%p'},{id:'lead',name:'리드오프',desc:'1번 타자 볼넷 +12%p'},{id:'festival',name:'홈런 축제',desc:'모든 홈런에 보너스 +1점'}];
-export const RESULTS=['아웃','볼넷','단타','2루타','3루타','홈런'];
+import {TEAMS as CLUBS} from './data/teams.js';
+import {ROSTER} from './data/roster-2025.js';
+import {CLUB_STYLES,CLUB_STYLE_IDS,convertStats,classify,commonSkill} from './rules.js';
+export {RULES,TYPES,SKILLS} from './rules.js';
+export const SEASON=2025;
+export const DATA_STATUS={target:150,verified:ROSTER.length,status:'공식 기록 검증 · 밸런스 테스트 중'};
+export const TEAMS=CLUBS.map((t,i)=>({...t,style:CLUB_STYLES[CLUB_STYLE_IDS[i]],desc:CLUB_STYLES[CLUB_STYLE_IDS[i]].desc}));
+// Hand-authored game-only signature skills, not real historical abilities.
+const signatures={'54400':'fifty','62415':'speedster','72443':'captain','65357':'bridge'};
+export const PLAYERS=ROSTER.map(p=>{const type=classify(p.stats);return {...p,type,rates:convertStats(p.stats),skill:signatures[p.id]??commonSkill(p.stats,type)};});
+export const EFFECTS=[{id:'eye',name:'눈야구 훈련',desc:'볼넷·사구 2회마다 다음 타자 홈런 +12%p'},{id:'bottom',name:'공포의 하위 타선',desc:'7~9번 타자가 출루하면 다음 타자 단타 +12%p'},{id:'factory',name:'홈런 공장',desc:'단타 확률 5%p를 홈런 확률로 전환'},{id:'coach',name:'대타 전문 코치',desc:'새로 영입한 선수의 매 스테이지 첫 타석 단타 +15%p'},{id:'grit',name:'끈질긴 타선',desc:'현재 이닝 아웃당 단타 +4%p'},{id:'focus',name:'득점권 집중',desc:'2·3루에 주자가 있으면 2루타 +6%p'},{id:'lead',name:'리드오프',desc:'1번 타자 볼넷 +12%p'},{id:'festival',name:'홈런 축제',desc:'모든 홈런에 보너스 +1점'}];
+export const RESULTS=['아웃','볼넷·사구','단타','2루타','3루타','홈런'];
