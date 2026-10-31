@@ -1,5 +1,5 @@
 // Game-only rules: these effects are not historical claims about clubs/players.
-export const RULES={targets:[3,4,5,7,9],innings:2,maxPA:30,bench:5,delay:6500,rerolls:2};
+export const RULES={targets:[1,2,4,6,8,10,12,15],stageNames:['개막전','몸풀기','지역 예선','라이벌전','순위 결정전','준준결승','준결승','챔피언전'],innings:3,maxPA:30,bench:5,delay:3000,rerolls:2,earlyBoost:[.20,.18]};
 export const CONVERSION={priorPA:60,prior:[.64,.10,.18,.05,.005,.025],reachMultiplier:1.45};
 export const TYPES=[{name:'출루형',desc:'3명: 전체 볼넷 +4%p'},{name:'교타형',desc:'3명: 직전 타자 출루 시 전체 단타 +6%p'},{name:'거포형',desc:'3명: 주자가 있으면 전체 홈런 +4%p'},{name:'주루형',desc:'3명: 전체 단타 +3%p · 단타 때 기존 주자 20% 확률로 추가 진루'}];
 export const SKILLS={

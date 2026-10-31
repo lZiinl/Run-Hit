@@ -22,7 +22,7 @@ test('draft preserves favorite/off-club coverage, excludes owned players, limits
 test('exhausted favorite pool still returns valid distinct alternatives',()=>{const g=newGame(0,seeded(1));g.bench=PLAYERS.filter(p=>p.team===0&&!g.lineup.some(x=>x.id===p.id));const offers=draftOffers(g,seeded(2));assert.equal(offers.length,3);assert.ok(offers.every(p=>p.team!==0));});
 test('club thresholds upgrade rather than stack and affect only affiliated batters',()=>{
  assert.deepEqual([2,3,4,5,6,7,9].map(clubBoost),[0,.04,.04,.07,.07,.10,.10]);
- const g=newGame(0,seeded(1)),s=newAttack();
+ const g=newGame(0,seeded(1)),s=newAttack();g.stage=2;
  // Synthetic fixtures isolate club count from batting-type and individual effects.
  const fixture=team=>({...PLAYERS[0],team,skill:'walk',type:3,rates:[.6,.1,.2,.05,.01,.04]});
  for(const n of [2,3,5,7]){g.lineup=Array.from({length:9},(_,i)=>fixture(i<n?0:i));s.cursor=0;let r=probabilities(g,s).rates;assert.ok(Math.abs(r[2]-(.2+.03+clubBoost(n)))<1e-12);s.cursor=8;assert.ok(Math.abs(probabilities(g,s).rates[2]-.23)<1e-12);}
